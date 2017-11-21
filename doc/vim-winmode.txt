@@ -1,0 +1,160 @@
+*vim-winmode.txt*           For Vim version 7.3    Last change: 2014 January 23
+
+Author:         Horacio Sanson
+Licence:        Vim licence, see |license|
+Homepage:       https://github.com/hsanson/vim-winmode
+Version:        0.5.0
+
+==============================================================================
+Contents                                         *vim-resize* *vim-winmode-contents*
+
+         1. Intro ........................... |vim-winmode-intro|
+         2. Installation .................... |vim-winmode-installation|
+         3. Usage ........................... |vim-winmode-usage|
+         4. Commands ........................ |vim-winmode-commands|
+         5. Mappings ........................ |vim-winmode-mappings|
+         6. Configuration ................... |vim-winmode-configuration|
+         7. Credits ......................... |vim-winmode-credits|
+
+==============================================================================
+1. Intro                                                      *vim-winmode-intro*
+
+This plugin adds a new windows modes to vim/neovim that allows easier
+manipulation of windows. There are four modes:
+
+ - focus mode: Allows switching windows focus using movement keys.
+ - resize mode: Allows resizing windows using movement keys.
+ - swap mode: Allows moving buffers between windows using movement keys.
+ - move mode: Allows moving windows using movement keys.
+
+==============================================================================
+2. Installation                                        *vim-winmode-installation*
+
+It is recommended that you use a package manager like Pathogen, Plug or Vundle
+to install this plugin:
+>
+       Plug 'hsanson/vim-resize'
+
+==============================================================================
+3. Usage                                                    *vim-winmode-usage*
+
+To start win mode simply execute the following command:
+>
+       :WinModeStart
+<
+By default this command start in focus mode. This behavior can be controlled
+via the *g:win_mode_default* variable.
+
+Common key shortcuts:
+
+These key shortcuts are available on all four sub-modes:
+
+ - s: Change to swap mode.
+ - w: Change to move mode.
+ - r: Change to resize mode.
+ - f: Change to focus mode.
+ - q: Exit.
+ - Esc: Exit.
+
+Mode key shortcuts:
+
+ - Move mode:
+   - h: Move window to the far left.
+   - j: Move window to the bottom.
+   - k: Move window to the top.
+   - l: Move window to the far right.
+   - c: Split current window.
+   - v: Vertical split current window.
+   - x: Close current window.
+ - Focus mode:
+   - h: Move cursor to the left window.
+   - j: Move cursor to the window below.
+   - k: Move cursor to the window above.
+   - l: Move cursor to the right window.
+ - Resize mode:
+   - h: Increase current window size left.
+   - j: Increase current window size down.
+   - k: Increase current window size up.
+   - l: Increase current window size right.
+   - =: Resize all windows to the same size.
+ - Swap mode:
+   - h: Move current window buffer to the left window.
+   - j: Move current window buffer to the window below.
+   - k: Move current window buffer to the window above.
+   - l: Move current window buffer to the right window.
+
+------------------------------------------------------------------------------
+4. Commands                                               *vim-winmode-commands*
+
+:WinModeStart
+    Start win default mode. The default mode can be changed via the
+    g:win_mode_default variable.
+
+:WinModeFocusStart
+    Start win focus mode. While in this mode movement keys will swicth the
+    current window.
+
+:WinModeResizeStart
+    Start win resize mode. While in this mode movement keys will resize the
+    current window.
+
+:WinModeSwapStart
+    Start win swap mode. While in this mode movement keys will move the
+    current buffer between windows. This mode does not affect the window
+    layout in any way.
+
+:WinModeMoveStart
+    Start win move mode. While in this mode movement keys will move the window
+    position. This mode will affect the current window layout.
+
+==============================================================================
+5. Mappings                                               *vim-winmode-mappings*
+The following normal mode mappings are defined:
+
+<Plug>WinModeStart
+  Starts the default win mode defined by g:win_mode_default setting.
+
+<Plug>WinModeFocusStart
+  Starts focus win mode.
+
+<Plug>WinModeMoveStart
+  Starts move win mode.
+
+<Plug>WinModeResizeStart
+  Starts resize win mode.
+
+<Plug>WinModeSwapStart
+  Starts swap win mode.
+
+You can create your own mappings from these like:
+
+  nmap <leader>w <Plug>WinModeStart
+
+==============================================================================
+6. Configuration                                     *vim-winmode-configuration*
+
+                                                        *g:win_mode_default*
+g:win_mode_default~
+Default: focus
+
+Sets the default mode to enter when running the :WinModeStart command.
+
+                                                        *g:win_mode_resize_step*
+g:win_mode_resize_step~
+Default: 5
+
+Sets the default step size used when resizing a window in resize mode.
+
+==============================================================================
+7. Credits                                             *vim-winmode-credits*
+
+This plugin is based on various other amazing ones:
+
+ - http://github.com/hsanson/vim-resize
+ - https://github.com/simeji/winresizer
+ - https://github.com/romgrk/winteract.vim
+ - https://github.com/spolu/dwm.vim
+ - https://github.com/t9md/vim-choosewin
+
+==============================================================================
+ vim: tw=78 ts=8 sw=4 sts=4 et ft=help
