@@ -163,7 +163,7 @@ function! s:modeMsg(mode)
 endfunction
 
 function! s:focusMsg()
-  return '(s:swap,w:move,r:resize,q:quit)'
+  return '(s:swap,w:move,r:resize,c:split,v:vsplit,x:close,q:quit)'
 endfunction
 
 function! s:moveMsg()
@@ -188,6 +188,12 @@ function! s:focusKeys(key)
     exe "normal! \<c-w>k"
   elseif c == 108  "l
     exe "normal! \<c-w>l"
+  elseif c == 120  "x
+    exe ":close"
+  elseif c == 118  "v
+    exe ":vsplit"
+  elseif c == 99   "c
+    exe ":split"
   endif
 endfunction
 
