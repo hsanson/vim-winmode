@@ -143,7 +143,22 @@ Sets the default mode to enter when running the :WinModeStart command.
 g:win_mode_resize_step~
 Default: 5
 
-Sets the default step size used when resizing a window in resize mode.
+Sets the default step size used when resizing a window in resize mode. Affects
+both vertical and horizontal resizing.
+
+                                             *g:win_horizontal_mode_resize_step*
+g:win_mode_horizontal_resize_step~
+Default: g:win_mode_resize_step
+
+Sets the default horizontal step size used when resizing a window up or down in
+resize mode. Takes precedence over g:win_mode_resize_step.
+
+                                               *g:win_vertical_mode_resize_step*
+g:win_mode_vertical_resize_step~
+Default: g:win_mode_resize_step
+
+Sets the default vertical step size used when resizing a window left or right in
+resize mode. Takes precedence over g:win_mode_resize_step.
 
 ==============================================================================
 7. Credits                                             *vim-winmode-credits*
