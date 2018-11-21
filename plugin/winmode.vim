@@ -10,7 +10,6 @@ endif
 let g:loaded_win_mode_plugin=1
 
 let g:win_mode_default = get(g:, 'win_mode_default', 'focus')
-let g:win_mode_resize_step = get(g:, 'win_mode_resize_step', '5')
 
 command! WinModeStart call winmode#start(g:win_mode_default)
 command! WinModeFocusStart call winmode#start("focus")

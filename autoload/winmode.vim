@@ -38,6 +38,18 @@ function! winmode#start(mode)
   echo ""
 endfunction
 
+function! s:step()
+  return get(g:, 'win_mode_resize_step', '5')
+endfunction
+
+function! s:verticalStep()
+  return get(g:, 'win_mode_vertical_resize_step', s:step())
+endfunction
+
+function! s:horizontalStep()
+  return get(g:, 'win_mode_horizontal_resize_step', s:step())
+endfunction
+
 function! s:hasBottomNeighbor()
   let oldwn = winnr()
   silent! exe "normal! \<c-w>j"
@@ -72,18 +84,18 @@ endfunction
 
 function! s:resizeUp()
   if s:hasBottomNeighbor()
-    silent! exe s:resizeCommand('-')
+    silent! exe s:resizeCommand(s:verticalStep(), '-')
   else
-    silent! exe s:resizeCommand('+')
+    silent! exe s:resizeCommand(s:verticalStep(), '+')
   endif
 endfunction
 
 function! s:resizeDown()
   if s:hasBottomNeighbor()
-    silent! exe s:resizeCommand('+')
+    silent! exe s:resizeCommand(s:verticalStep(), '+')
   else
     if s:hasTopNeighbor()
-      silent! exe s:resizeCommand('-')
+      silent! exe s:resizeCommand(s:verticalStep(), '-')
     endif
   endif
 endfunction
@@ -91,29 +103,29 @@ endfunction
 function! s:resizeRight()
   if s:hasLeftNeighbor()
     if s:hasRigthNeighbor()
-      silent! exe s:resizeCommand('>')
+      silent! exe s:resizeCommand(s:horizontalStep(), '>')
     else
-      silent! exe s:resizeCommand('<')
+      silent! exe s:resizeCommand(s:horizontalStep(), '<')
     endif
   else
-    silent! exe s:resizeCommand('>')
+    silent! exe s:resizeCommand(s:horizontalStep(), '>')
   endif
 endfunction
 
 function! s:resizeLeft()
   if s:hasLeftNeighbor()
     if s:hasRigthNeighbor()
-      silent! exe s:resizeCommand('<')
+      silent! exe s:resizeCommand(s:horizontalStep(), '<')
     else
-      silent! exe s:resizeCommand('>')
+      silent! exe s:resizeCommand(s:horizontalStep(), '>')
     endif
   else
-    silent! exe s:resizeCommand('<')
+    silent! exe s:resizeCommand(s:horizontalStep(), '<')
   endif
 endfunction
 
-fun! s:resizeCommand(dir)
-  return "normal! \<c-w>" . g:win_mode_resize_step . a:dir
+fun! s:resizeCommand(step, dir)
+  return "normal! \<c-w>" . a:step . a:dir
 endfun
 
 " Swap buffer in current window to the direct window. The direct argument can
