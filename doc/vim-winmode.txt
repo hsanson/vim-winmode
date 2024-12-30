@@ -43,7 +43,7 @@ To start win mode simply execute the following command:
        :WinModeStart
 <
 By default this command start in focus mode. This behavior can be controlled
-via the *g:win_mode_default* variable.
+via the g:win_mode_default variable.
 
 Common key shortcuts:
 
